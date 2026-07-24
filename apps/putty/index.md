@@ -19,7 +19,7 @@ tags:
   <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/apple-retro.svg" alt="macOS" width="20"> macOS
 </p>
 
-![PuTTY](downloads_putty.avif)
+![PuTTY](downloads_putty.webp)
 
 **Website:** [PuTTY latest releases](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html)
 **Developer:** Simon Tatham and team

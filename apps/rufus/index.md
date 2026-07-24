@@ -15,7 +15,7 @@ tags:
 
 <p><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/windows-retro.svg" alt="Windows" width="20"> Windows</p>
 
-![Rufus](downloads_rufus.avif)
+![Rufus](downloads_rufus.webp)
 
 **Website:** [rufus.ie](https://rufus.ie/)
 **Developer:** Pete Batard

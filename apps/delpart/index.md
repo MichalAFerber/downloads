@@ -12,7 +12,7 @@ tags:
 
 <p><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/windows-retro.svg" alt="Windows" width="20"> Windows</p>
 
-![Delpart](downloads_delpart.avif)
+![Delpart](downloads_delpart.webp)
 
 **Website:** [upgradenrepair.com/Downloads/delpart](https://www.upgradenrepair.com/Downloads/delpart/delpart.htm)
 

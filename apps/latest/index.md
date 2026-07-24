@@ -15,7 +15,7 @@ tags:
 
 <p><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/apple-retro.svg" alt="macOS" width="20"> macOS</p>
 
-![Latest](downloads_latest.avif)
+![Latest](downloads_latest.webp)
 
 **Website:** [max.codes/latest](https://max.codes/latest/)
 **Developer:** Max Langer

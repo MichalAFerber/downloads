@@ -13,7 +13,7 @@ tags:
 
 <p><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/windows-retro.svg" alt="Windows" width="20"> Windows</p>
 
-![EditPad Classic](downloads_editpadclassic.avif)
+![EditPad Classic](downloads_editpadclassic.webp)
 
 **Website:** [editpadclassic.com](https://www.editpadclassic.com/)
 **Developer:** Just Great Software (JGsoft)

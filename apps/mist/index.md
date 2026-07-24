@@ -16,7 +16,7 @@ tags:
 
 <p><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/apple-retro.svg" alt="macOS" width="20"> macOS</p>
 
-![Mist](downloads_mist.avif)
+![Mist](downloads_mist.webp)
 
 **GitHub:** [ninxsoft/Mist](https://github.com/ninxsoft/Mist/)
 **Developer:** ninxsoft
