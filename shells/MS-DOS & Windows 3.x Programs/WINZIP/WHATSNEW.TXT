@@ -1,0 +1,95 @@
+WinZip(R) version 6.3 (SR-1)
+Copyright (C) 1991-1997 Nico Mak Computing, Inc.
+All Rights Reserved
+
+** Disk Spanning **
+
+WinZip 6.3 features an updated zip/unzip engine with automatic built-in
+disk spanning support for multi-disk Zip files.  If you create a zip
+file on diskettes and the first diskette fills, then disk spanning is
+automatically activated, and you are simply prompted to put in a new
+diskette to continue the archive.  There is no need to specify that you
+want to span before you start.
+
+** Interface to WinZip Internet Browser Support Add-On **
+
+WinZip includes an interface to the free Internet Browser Support
+Add-On, which allows users to download and open archives from the
+Internet with one click via Microsoft's Internet Explorer and Netscape
+Navigator.  There is no need to "Save to disk" and then switch to WinZip
+or to the Windows Explorer or File Manager to open the downloaded file.
+In addition, all files that have been downloaded are automatically
+copied from the Internet Browser's temporary folders to a folder of the
+user's choice; this ensures that a permanent copy of the download is
+saved on the user's system, even if the downloaded file is automatically
+deleted by the browser.
+
+** Windows 95 & NT Explorer context (right-click) menus enhancements **
+
+- New "Add to <filename.zip>" entry to easily compress files in place.
+- New "Extract to folder <filename>" makes it easy to unzip in place.
+- New "Create Self-Extractor" entry makes self-extracting zip files.
+- All WinZip context menus have a WinZip icon for easier identification.
+
+** Other features in the new zip/unzip engine **
+
+- Empty folders are restored when unzipping.
+- Empty folders are stored when zipping (however, they are not listed
+  in the main WinZip window for cosmetic reasons).
+- Empty folders are removed after a successful "Move" zip operation.
+- Attributes are automatically restored while unzipping.
+- Attribute support for Zip files in the Add and Drop dialog boxes:
+  - Include files only if archive attribute is set.
+  - Reset archive attribute after adding files.
+  - Include system and hidden files.
+- Option to "Skip Older Files" while extracting.
+
+** Other changes **
+
+- WinZip includes a work-around for a bug in DCOM95 and some pre-
+  release versions of Microsoft Internet Explorer 3.0 that results in a
+  "Path too long" message when using the Extract dialog box under
+  Windows 95.
+- WinZip no longer includes an option to run the MS-DOS PKZIP 2.04g
+  (WinZip has not needed PKZIP/PKUNZIP to perform basic zipping and
+  unzipping operations for the past several releases, but some users
+  have assumed from the presence of this option that WinZip is only
+  a shell for PKZIP/PKUNZIP, and required these programs for basic
+  operations).
+- The Add and Drop dialog boxes include a Password button as an
+  alternative to the Options->Password dialog box.
+- Improvements to "View Last Output" dialog box:
+  - RichEdit control used under Windows 95 and NT for higher capacity.
+  - View Last Output results improved while testing Zip files:
+    - OK appears after each line.
+    - summary line appears at the end of the listing.
+- The WinZip Wizard now handles password protected files.
+- WinZip handles certain invalid zips more gracefully.
+- WinZip Self-Extractor Personal Edition supports password protected
+  zip files.
+- Under Windows 95 and NT, WinZip Self-Extractor Personal Edition is now
+  a 32-bit EXE file (while earlier versions made it possible to build
+  32-bit self-extracting Zip files, the program that created these
+  32-bit files was actually a 16-bit program).
+- 32-bit self-extracting Zip files support Microsoft(R) Authenticode(tm)
+  technology.  In earlier versions, the self-extracting Zip file's
+  integrity check conflicted with Authenticode.  (For information on
+  Authenticode, visit the Microsoft home page, click the "Search" button
+  and search for "authenticode code signing".)
+
+** WinZip 6.3 (SR-1) **
+
+This is SR-1 (Service Release 1) of WinZip 6.3.  It includes a solution
+to a problem in the original release of WinZip 6.3 that occurred only
+when making changes to Zip files containing certain kinds of "extra"
+information, such as the OS/2 extended attribute information saved by
+some OS/2 Zip utilities.  (Zip files created by WinZip itself, or by any
+other MS-DOS or Windows Zip utility that we are aware of, were not
+affected, with the exception of Zip files created by version 2.1a or
+later of the InfoZip group's text-mode Win32 Zip utility.)  For details
+on this problem, see the web page http://www.winzip.com/wz63sr1.htm.
+
+** Additional Information **
+
+Information on new features in previous versions of WinZip is included
+in the online help file.

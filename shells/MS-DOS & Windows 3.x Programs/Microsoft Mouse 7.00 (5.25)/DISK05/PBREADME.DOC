@@ -1,0 +1,137 @@
+        PC Paintbrush for Windows - PBREADME.DOC 
+
+
+This document provides additional information about the 
+following:
+
+- Choosing PC Paintbrush Commands
+- Changing the Size of the PC Paintbrush Window
+- Memory Requirements for Copying/Moving PC Paintbrush 
+  Images
+- Loading a Windows 2.03 Application Program Over Windows PC 
+  Paintbrush
+- The Meaning of the Term "Planes"
+- Printing PC Paintbrush Files
+- Using PC Paintbrush with Other Windows Applications
+
+Choosing PC Paintbrush Commands
+
+The manual instructs you to choose a command from a menu by 
+pointing to the menu, pressing the left mouse button and 
+dragging to make your selection.  You can also click the 
+left mouse button to open the menu, and then L-click on a 
+command to choose it, or L-click anywhere on the screen to 
+close the menu without choosing a command.
+
+Note:  If the Paintbrush tool is selected, you should choose 
+a command by pointing to the menu and dragging.  If you 
+choose a command or close a menu by clicking inside the 
+Paintbrush drawing area, the Paintbrush tool will leave 
+marks on the drawing area in the selected paintbrush color. 
+You can also choose a menu by pressing the Alt key and a 
+mnemonic key, which is underlined on the menu title.  For 
+example, Alt-F will choose the File menu.  However, these 
+"accelerator" keys will not work if the mouse pointer is 
+either in the shape of the "Zoom" box or is a very large 
+eraser.
+
+
+Changing the Size of the PC Paintbrush Window
+
+You change the size of the PC Paintbrush window in the same 
+way you change the size of the window for any other Windows 
+2.03 application.  For a description of how to change the 
+window size, see page 66 in version 2.0 of the "Microsoft 
+Windows User's Guide."  (The guidelines for changing the 
+Paintbrush window size on page 2-3 of the "PC Paintbrush for 
+Windows User's Manual" apply to Windows 1.03, and do not 
+apply to Windows 2.03.)
+
+
+Memory Requirements for Copying/Moving PC Paintbrush Images 
+
+High-resolution color images require a substantial amount of 
+memory.  When you are copying or moving PC Paintbrush 
+images, you may want to close any applications you are not 
+using to free up memory for Paintbrush.  If you try to copy 
+or move an image, and there isn't enough memory available to 
+do so, Paintbrush will alert you in a message box.
+
+
+Loading a Windows 2.03 Application Program Over Windows PC Paintbrush 
+
+When the mouse pointer is either the shape of the "Zoom" box 
+or is a very large eraser, the pointer will sometimes 
+appear to slide under an active application window that is 
+over the Paintbrush window.  Also, should the cursor be 
+either of these figures as mentioned, the <Alt><Tab> 
+combination will not cycle the Windows as would be expected.  
+These symptoms are a consequence of how these two special 
+cursors are generated.  If they occur and are a problem, you 
+can either:
+
+      1) Reduce the size of the cursor.
+      2) Make sure that one edge of the application window 
+         extends beyond the Paintbrush drawing area.
+      3) Pick one of the other tools.
+
+Following either of these steps, you can then move the 
+cursor into the application window.
+
+
+The Meaning of the Term "Planes" 
+
+When you load Windows PC Paintbrush, or when you clear the 
+screen, a dialog box appears that tells you the size of the 
+drawing area and the number of "planes" being used.  The 
+number of planes corresponds to the number of colors your 
+monitor can display.  One plane refers to two color 
+monochrome, two planes supports four colors, three planes 
+has eight colors, and four planes supports sixteen colors.
+
+
+Printing PC Paintbrush Files
+
+If you print a Paintbrush picture file on a laserjet or 
+postscript printer, you may need to experiment with 
+different densities (e.g., 75, 150, or 300 dots per inch) to 
+get the best results.  Picture files created by color 
+graphics programs can occupy a substantial amount of 
+computer memory; laserjet and postscript printers have small 
+memory buffers, and may not be able to handle printing an 
+image at a particular size or density.
+
+At this time, Paintbrush does not print to the Xerox 4020 
+color printer.
+
+
+Using PC Paintbrush with Other Windows Applications
+
+PC Paintbrush for Windows can be used with other graphics 
+applications that run under Windows. 
+
+Paintbrush images can be copied into an Aldus PageMaker 
+publication, but they have to be black and white images. To 
+create a monochrome picture in Paintbrush, follow these 
+steps:
+
+      1) Select "Clear" in the Paintbrush File menu.
+      2) When the dialog box appears change the number of 
+         planes to one (1). 
+      3) Click the left mouse button on "OK".
+
+You can now draw pictures that can be copied into an Aldus 
+PageMaker file.
+
+Graphs created in Microsoft Excel can be edited in Windows 
+Paintbrush, but cannot be pasted directly from Excel. To 
+copy an Excel graph into Paintbrush follow these steps:
+
+     1) Copy the Excel graph to the Clipboard.
+     2) Paste the graph from the Clipboard into Windows 
+        Paint.
+     3) Copy the graph from Paint back to the Clipboard.
+     4) Paste the graph from the Clipboard into Paintbrush.
+
+You can now edit the Excel graph as you would any other 
+Paintbrush file.

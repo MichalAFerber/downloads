@@ -1,0 +1,24 @@
+;CTSNet service provider
+;
+; If you make a change to this file you should change the name (line above)
+; and copy it into the scripts directory (in case you change scripts).
+;
+set CRLFProcessing=0
+set TelnetCommand=telnet \{system} \{port}\r\n
+set SMTPHELOString=cts.com
+;
+Cancelon |NO DIALTONE|BUSY|NO CARRIER|
+;
+send ATDT {DialNumber}\r
+waitfor login:
+send {poplogin}\r
+waitfor Password:
+send {PopPass}\r
+waitfor "TERM"
+send \r
+Pause 1
+send \r
+waitfor %
+send exec srialpop\r
+waitfor %
+;

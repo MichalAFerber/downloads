@@ -1,0 +1,31 @@
+;Pacifier.com ( 199.2.117.161 ) Navagation Script..
+;
+; Navigation Script Written By jeffb@pacifier.com
+;
+; This script should not need editing if you run into problems feel
+; free to send me E-mail explaining what's happening.
+;
+;
+set TelnetCommand=telnet \{System} \{Port} \r
+set CRLFProcessing=0
+;set baudrate=38400
+set SMTPHELOSTRING=199.2.117.161
+;
+cancelon "NO CARRIER"BUSY"NO DIALTONE"Username/Password Incorrect"
+send ATDT {DialNumber}\r
+;
+waitfor CONNECT
+waitfor host:
+send pacifier\r
+pause 1
+waitfor gin:
+pause 1
+send {DialLogin}\r
+waitfor ssword:
+pause 1
+send {DialPass}\r
+waitfor >
+send exec srialpop\r
+waitfor %
+
+

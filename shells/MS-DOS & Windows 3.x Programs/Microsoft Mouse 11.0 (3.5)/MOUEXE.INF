@@ -1,0 +1,21 @@
+[version]
+Signature="$Chicago$"
+AdvancedINF=2.5,"You need a newer version of Advpack.dll."
+LayoutFile=mouexe.inf
+
+[SourceDisksNames]
+1="DOSMOUSE",,0
+
+[SourceDisksFiles]
+mouse.exe=1
+mouse.lan=1
+
+[DestinationDirs]
+DefaultDestDir=30,MSMouse
+
+[DefaultInstall]
+Copyfiles=MouseFileCopy
+
+[MouseFileCopy]
+mouse.exe,,,32
+mouse.lan,,,32

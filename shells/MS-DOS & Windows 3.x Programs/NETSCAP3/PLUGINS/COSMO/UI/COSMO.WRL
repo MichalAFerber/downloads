@@ -1,0 +1,997 @@
+#VRML V2.0 utf8
+
+# Cosmo Player 1.0 UI
+
+# This VRML file defines the appearance and behavior of the
+# Cosmo Player dashboard.
+#
+# WARNING: Making changes to this file is not recommended.
+# Future releases of Cosmo Player are NOT GUARANTEED to
+# support this file format!
+#
+# Do not open back panel; no user serviceable parts inside.
+# The manufacturers of this VRML dashboard are not responsible for
+# any liabilities or damages resulting from this VRML dashboard.  Ask
+# your doctor or pharmacist.  You may or may not have additional
+# rights which may vary from state to state.  Not recommended for
+# children under twelve.  Parental guidance discouraged and frowned
+# upon.  Pencils, additional paper, and batteries not included.  Some
+# assembly may be required.  Does not come with any other figures.
+# Your mileage may vary.
+
+
+EXTERNPROTO LayoutHint [ field SFString placement
+                         field SFFloat widthFraction
+                         field SFFloat heightFraction
+                         field SFInt32 maxPixelWidth
+                         field SFInt32 maxPixelHeight ]
+[ "urn:inet:netscape.com:vrml/LayoutHint.wrl" ]
+
+EXTERNPROTO CosmoBrowser [
+  eventIn  SFBool   set_gravity
+  eventIn  SFBool   set_collision
+  eventIn  SFBool   set_point
+  eventIn  SFString set_navType
+  eventIn  SFFloat  set_speed
+  eventIn  SFBool   set_headlight
+  eventIn  SFFloat  set_headlightIntensity
+  eventIn  SFBool   set_anyMode
+  eventIn  SFInt32  set_straighten
+  eventIn  SFInt32  set_showHelp
+
+  eventOut SFBool   gravity_changed
+  eventOut SFBool   collision_changed
+  eventOut SFBool   point_changed
+  eventOut SFString navType_changed
+  eventOut SFFloat  speed_changed
+  eventOut SFBool   headlight_changed
+  eventOut SFFloat  headlightIntensity_changed
+  eventOut SFBool   anyMode_changed
+  eventOut MFInt32  rect_changed
+  eventOut SFInt32  numViewpoints_changed
+  eventOut MFString navTypeList_changed
+]
+[ "urn:inet:netscape.com:vrml/CosmoBrowser.wrl" ]
+
+DEF COSMOBROWSER CosmoBrowser { }
+
+
+#
+# Black dashboard background
+#
+Group {
+  children [
+    LayoutHint {
+      placement BOTTOMCENTER
+      widthFraction 450.0   # hand-tweaked
+      heightFraction 0.085
+      maxPixelHeight 40
+    }
+
+    # Dummy TouchSensor here to absorb any mouse clicks on the 
+    # dashboard background (so POINT mode can't click through it)
+    TouchSensor { }
+
+    Group {
+      children [
+        Shape {
+          appearance Appearance {
+            material Material {
+              ambientIntensity 0
+              diffuseColor  0 0 0
+              shininess 0
+            }
+          }
+          geometry IndexedFaceSet {
+            ccw TRUE
+            solid TRUE
+            coord Coordinate {
+	      point [ 0 4 -0.1, 200000 4 -0.1, 0 37 -0.1, 200000 37 -0.1 ]
+	    }
+            coordIndex [ 0, 1, 3, -1,  3, 2, 0, -1 ]
+          }
+        }
+      ]
+    }
+  ]
+}
+
+
+#
+# Cosmo logo at far right of dashboard
+#
+Group {
+  children [
+    LayoutHint {
+      placement BOTTOMRIGHT
+      widthFraction  0.169    # the dashboard buttons use the other 0.831
+      heightFraction 0.08
+      maxPixelHeight 36
+    }
+
+    Anchor {
+      url "http://cosmo.sgi.com/" 
+      parameter [ "target=newwindow" ]
+      description " "   # Don't show any pop-up description on mouseOver
+
+      children [
+
+	# Dummy TouchSensor here to absorb any mouse clicks on the 
+	# dashboard background (so POINT mode can't click through it)
+	# (Needed since the *other* dummy TouchSensor is obscured by
+	#  this Anchor...)
+	TouchSensor { }
+
+	Shape {
+	  geometry IndexedFaceSet {
+	    coord Coordinate {
+	      # coords tweaked to correct aspect ratio of cplogo.jpg
+	      point [ -2.55  1  0,  0  1  0,  0 0  0,  -2.55 0  0 ]
+	    }
+	    texCoord TextureCoordinate {
+	      point [ 0 1,  1 1,  1 0,  0 0 ]
+	    }
+	    coordIndex [ 3, 2, 1, 0, -1 ]
+	    texCoordIndex [ 3, 2, 1, 0, -1 ]
+	  }
+	  appearance Appearance {
+	    material Material {
+	      ambientIntensity 1
+	      diffuseColor 0 0 0
+	    }
+	    texture ImageTexture {
+	      url "netscape/cplogo.jpg"
+	    }
+	  }
+	}
+
+	# Some padding to the right of the logo
+	Shape {
+	  geometry IndexedFaceSet {
+	    coord Coordinate {
+	      point [ 0  1  0,  0.15  1  0,  0.15 0 0,  0  0  0 ]
+	    }
+	    coordIndex [ 3, 2, 1, 0, -1 ]
+	  }
+	  appearance Appearance {
+	    material Material {
+	      ambientIntensity 1
+	      diffuseColor 0 0 0
+	    }
+	  }
+	}
+      ]
+    }
+  ]
+}
+
+
+PROTO ModeButton [
+  # Textures for each possible state:
+  # (Mode buttons have 3 possible states; Gravity button has 4)
+  field   MFString   state0_url  [ "bogus0.jpg" ]   # OFF / OFF_ENA
+  field   MFString   state1_url  [ "bogus1.jpg" ]   # ON  / ON_ENA
+  field   MFString   state2_url  [ "bogus2.jpg" ]   # DIS / OFF_DIS
+  field   MFString   state3_url  [ "bogus3.jpg" ]   #     / ON_DIS
+
+  # Event in from the ModeController:
+  eventIn  SFInt32  setState
+
+  # Event out to the ModeController:
+  eventOut SFTime   clicked
+]
+{
+  Group {
+    children [
+      DEF ModeButton_TouchSensor TouchSensor {
+        touchTime IS clicked
+      }
+      DEF ModeButton_Switch Switch {
+        whichChoice IS setState
+        choice [
+          # State 0:
+          Shape {
+            appearance Appearance {
+              material DEF MDB_MATERIAL Material {
+                ambientIntensity 1
+                diffuseColor 0 0 0
+                shininess 0
+              }
+              texture ImageTexture {
+                url IS state0_url
+              }
+            }
+            geometry DEF MDB_IFS IndexedFaceSet {
+              ccw TRUE
+              solid TRUE
+              coord Coordinate {
+                point [ -11 0 0, 11 0 0, -11 22 0, 11 22 0 ]
+              }
+              coordIndex [ 0, 1, 3, -1, 3, 2, 0, -1 ]
+              texCoord TextureCoordinate {
+                point [ 0 0, 1 0, 0 1, 1 1, 0 0, 1 0, 0 1, 1 1,
+                        0 0, 1 0, 0 1, 1 1 ]
+              }
+              texCoordIndex [ 4, 5, 7, -1,  7, 6, 4, -1 ]
+            }
+          }
+          # State 1:
+          Shape {
+            appearance Appearance {
+              material USE MDB_MATERIAL
+              texture ImageTexture {
+                url IS state1_url
+              }
+            }
+            geometry USE MDB_IFS
+          }
+          # State 2:
+          Shape {
+            appearance Appearance {
+              material USE MDB_MATERIAL
+              texture ImageTexture {
+                url IS state2_url
+              }
+            }
+            geometry USE MDB_IFS
+          }
+          # State 3:
+          Shape {
+            appearance Appearance {
+              material USE MDB_MATERIAL
+              texture ImageTexture {
+                url IS state3_url
+              }
+            }
+            geometry USE MDB_IFS
+          }
+        ]
+      }
+    ]
+  }
+}
+
+
+PROTO MomentaryButton [
+  field   MFString   on_url   [ "bogus1.jpg" ]
+  field   MFString   off_url  [ "bogus2.jpg" ]
+  field   MFString   dis_url  [ "bogus3.jpg" ]
+
+  eventIn  SFBool    enable_in
+  eventOut SFInt32   activated
+]
+{
+  Group {
+    children [
+      DEF MomentaryButton_TouchSensor TouchSensor { }
+      DEF MomentaryButton_Switch Switch {
+        whichChoice 0
+        choice [
+          # Choice 0: off
+          Shape {
+            appearance Appearance {
+              material DEF MMB_MATERIAL Material {
+                ambientIntensity 1
+                diffuseColor 0 0 0
+                shininess 0
+              }
+              texture ImageTexture {
+                url IS off_url
+              }
+            }
+            geometry DEF MMB_IFS IndexedFaceSet {
+              ccw TRUE
+              solid TRUE
+              coord Coordinate {
+                point [ -11 0 0, 11 0 0, -11 22 0, 11 22 0 ]
+              }
+              coordIndex [ 0, 1, 3, -1,  3, 2, 0, -1 ]
+              texCoord TextureCoordinate {
+                point [ 0 0, 1 0, 0 1, 1 1, 0 0, 1 0, 0 1, 1 1,
+                        0 0, 1 0, 0 1, 1 1 ]
+              }
+              texCoordIndex [ 4, 5, 7, -1,  7, 6, 4, -1 ]
+            }
+          }
+          # Choice 1: on
+          Shape {
+            appearance Appearance {
+              material USE MMB_MATERIAL
+              texture ImageTexture {
+                url IS on_url
+              }
+            }
+            geometry USE MMB_IFS
+          }
+          # Choice 2: dis
+          Shape {
+            appearance Appearance {
+              material USE MMB_MATERIAL
+              texture ImageTexture {
+                url IS dis_url
+              }
+            }
+            geometry USE MMB_IFS
+          }
+        ]
+      }
+
+      #
+      DEF MomentaryButton_Script Script {
+        eventIn  SFTime touchTime
+        eventIn  SFBool touch_active
+        eventIn  SFBool touch_isover
+        eventIn  SFBool  enable_in IS enable_in
+        eventOut SFInt32 do_it IS activated
+        eventOut SFInt32 switch_choice
+
+	field SFBool enabled TRUE
+
+        url "javascript:
+            function enable_in(bool) {
+              enabled = bool;
+              if (bool) 
+                switch_choice = 0;  // assume 'off' state
+              else
+                switch_choice = 2;
+            }              
+            function touch_active(bool) {
+              if (enabled) {
+                if (bool) 
+                  switch_choice = 1;
+                else
+                  switch_choice = 0;
+              }
+            }
+            function touch_isover(bool) {
+              // This is only here to clean up the possible condition
+              // of a button being left 'on' after a very quick touch
+              if (enabled)
+                switch_choice = 0;
+            }
+            function touchTime(nav) {
+              if (enabled) {
+                do_it = 1;
+              }
+            }"
+      }
+    ]
+    ROUTE MomentaryButton_TouchSensor.touchTime    TO MomentaryButton_Script.touchTime
+    #
+    ROUTE MomentaryButton_TouchSensor.isActive TO MomentaryButton_Script.touch_active
+    ROUTE MomentaryButton_TouchSensor.isOver TO MomentaryButton_Script.touch_isover
+    ROUTE MomentaryButton_Script.switch_choice TO MomentaryButton_Switch.whichChoice
+  }    
+}
+
+PROTO ToggleButton [
+  field   MFString   on_url   [ "bogus1.jpg" ]
+  field   MFString   off_url  [ "bogus2.jpg" ]
+
+  eventIn  SFBool  state_in
+  eventOut SFBool  state_out
+]
+{
+  Group {
+    children [
+      DEF ToggleButton_TouchSensor TouchSensor { }
+      DEF ToggleButton_Switch Switch {
+        whichChoice 0
+        choice [
+          # Choice 0: off
+          Shape {
+            appearance Appearance {
+              material DEF TB_MATERIAL Material {
+                ambientIntensity 1
+                diffuseColor 0 0 0
+                shininess 0.4
+              }
+              texture ImageTexture {
+                url IS off_url
+              }
+            }
+            geometry DEF TB_IFS IndexedFaceSet {
+              ccw TRUE
+              solid TRUE
+              coord Coordinate {
+                point [ -11 0 0, 11 0 0, -11 22 0, 11 22 0 ]
+              }
+              coordIndex [ 0, 1, 3, -1,  3, 2, 0, -1 ]
+              texCoord TextureCoordinate {
+                point [ 0 0, 1 0, 0 1, 1 1, 0 0, 1 0, 0 1, 1 1,
+                        0 0, 1 0, 0 1, 1 1 ]
+              }
+              texCoordIndex [ 4, 5, 7, -1,  7, 6, 4, -1 ]
+            }
+          }
+          # Choice 1: on
+          Shape {
+            appearance Appearance {
+              material USE TB_MATERIAL
+              texture ImageTexture {
+                url IS on_url
+              }
+            }
+            geometry USE TB_IFS
+          }
+        ]
+      }
+
+      #
+      DEF ToggleButton_Script Script {
+        eventIn SFTime touchTime
+        #eventIn SFBool touch_active
+        eventIn SFBool state_in IS state_in
+
+        eventOut SFBool state_out IS state_out
+        eventOut SFInt32 switch_choice
+
+        url "javascript:
+            function touchTime(time) {
+              bStor = !bStor;
+              state_out = bStor;
+              update_choice();
+            }
+            function update_choice() {
+              if (bStor)
+                switch_choice = 1;
+              else
+                switch_choice = 0;
+            }
+            function state_in(bool) {
+              bStor = bool;
+              update_choice();
+            }"
+      }
+    ]
+    ROUTE ToggleButton_TouchSensor.touchTime    TO ToggleButton_Script.touchTime
+    ROUTE ToggleButton_Script.switch_choice TO ToggleButton_Switch.whichChoice
+  }    
+}
+
+
+#
+# All the dashboard buttons (left-justified on dashboard)
+#
+Group {
+  children [
+
+    LayoutHint {
+      placement BOTTOMLEFT
+      widthFraction 0.831   # the cosmo logo uses the other 0.169
+      heightFraction 0.08
+      maxPixelHeight 36
+    }
+
+    Transform {
+      children [
+
+	# A separate black box behind the dashboard buttons;
+	# needed for the LayoutHint above to work correctly:
+        Transform {
+          translation 0 13 0
+          children [
+            Shape {
+              appearance Appearance {
+                material Material {
+		  ambientIntensity 0
+		  diffuseColor 0 0 0
+                  shininess 0
+                }
+              }
+              geometry IndexedFaceSet {
+                ccw TRUE
+                solid TRUE
+                coord Coordinate {
+                  point [ -475 -10 -0.1, 115 -10 -0.1,
+			  -475 25 -0.1, 115 25 -0.1 ]
+                }
+                coordIndex [ 0, 1, 3, -1,  3, 2, 0, -1 ]
+              }
+            }
+          ]
+        }
+
+        Transform {
+          translation -440 13 0
+          scale 3 1 1
+          children [
+            DEF GRAVITY_BUTTON ModeButton {
+              state0_url [ "netscape/groff.jpg" ]
+              state1_url [ "netscape/gron.jpg" ]
+              state2_url [ "netscape/grdisoff.jpg" ]
+              state3_url [ "netscape/grdison.jpg" ]
+            }
+          ]
+        }
+
+        Transform {
+          translation -382 13 0
+          scale 2 1 1
+          children [
+            DEF WALK_MB ModeButton {
+              state0_url [ "netscape/waoff.jpg" ]
+              state1_url [ "netscape/waon.jpg" ]
+              state2_url [ "netscape/wadisoff.jpg" ]
+            }
+          ]
+        }
+
+        Transform {
+          translation -335 13 0
+          scale 2 1 1
+          children [
+            DEF SLIDE_MB ModeButton {
+              state0_url [ "netscape/sloff.jpg" ]
+              state1_url [ "netscape/slon.jpg" ]
+              state2_url [ "netscape/sldisoff.jpg" ]
+            }
+          ]
+        }
+
+        Transform {
+          translation -288 13 0
+          scale 2 1 1
+          children [
+            DEF LOOK_MB ModeButton {
+              state0_url [ "netscape/looff.jpg" ]
+              state1_url [ "netscape/loon.jpg" ]
+              state2_url [ "netscape/lodisoff.jpg" ]
+            }
+          ]
+        }
+
+        Transform {
+          translation -217 13 0
+          scale 3 1 1
+          children [
+            DEF EXAMINE_MB ModeButton {
+              state0_url [ "netscape/exoff.jpg" ]
+              state1_url [ "netscape/exon.jpg" ]
+              state2_url [ "netscape/exdisoff.jpg" ]
+            }
+          ]
+        }
+
+        Transform {
+          translation -130 13 0
+          scale 2 1 1
+          children [
+            DEF POINT ToggleButton {
+              on_url      [ "netscape/poon.jpg" ]
+              off_url     [ "netscape/pooff.jpg" ]
+            }
+          ]          
+          ROUTE COSMOBROWSER.point_changed TO POINT.state_in
+          ROUTE POINT.state_out            TO COSMOBROWSER.set_point
+        }
+
+	Transform {
+          translation -84 13 0
+          scale 1 1 1
+          children [
+            DEF VIEWLEFTBUTTON MomentaryButton {
+              on_url      [ "netscape/leon.jpg" ]
+              off_url     [ "netscape/leoff.jpg" ]
+              dis_url     [ "netscape/ledisoff.jpg" ]
+            }
+
+            DEF ViewLeftButton_Script Script {
+              eventIn SFInt32 activated
+              url "javascript:
+                function activated(val) {
+                  l3dBrowser.GoToPrevViewpoint();
+                }"
+            }
+          ]
+          ROUTE VIEWLEFTBUTTON.activated TO ViewLeftButton_Script.activated
+        }
+
+	Transform {
+          translation -55 13 0
+          scale 2 1 1
+          children [
+
+            DEF VIEWBUTTON MomentaryButton {
+              on_url      [ "netscape/vion.jpg" ]
+              off_url     [ "netscape/vioff.jpg" ]
+            }
+
+            DEF ViewButton_Script Script {
+              eventIn SFInt32 activated
+              url "javascript:
+                function activated(val) {
+                  l3dBrowser.ReturnToViewpoint();
+                }"
+            }
+          ]
+          ROUTE VIEWBUTTON.activated     TO ViewButton_Script.activated
+        }
+
+	Transform {
+          translation -25 13 0
+          scale 1 1 1
+          children [
+
+            DEF VIEWRIGHTBUTTON MomentaryButton {
+              on_url      [ "netscape/rion.jpg" ]
+              off_url     [ "netscape/rioff.jpg" ]
+              dis_url     [ "netscape/ridisoff.jpg" ]
+            }
+
+            DEF ViewRightButton_Script Script {
+              eventIn SFInt32 activated
+              url "javascript:
+                function activated(val) {
+                  l3dBrowser.GoToNextViewpoint();
+                }"
+            }
+          ]
+          ROUTE VIEWRIGHTBUTTON.activated TO ViewRightButton_Script.activated
+        }
+
+	Transform {
+          translation 35 13 0
+          scale 4 1 1
+          children [
+
+            DEF STRAIGHTEN MomentaryButton {
+              on_url      [ "netscape/ston.jpg" ]
+              off_url     [ "netscape/stoff.jpg" ]
+            }
+          ]
+          ROUTE STRAIGHTEN.activated     TO COSMOBROWSER.set_straighten
+        }
+
+	Transform {
+          translation 100 13 0
+          scale 1 1 1
+          children [
+
+            DEF HELP MomentaryButton {
+              on_url      [ "netscape/heon.jpg" ]
+              off_url     [ "netscape/heoff.jpg" ]
+            }
+          ]
+          ROUTE HELP.activated     TO COSMOBROWSER.set_showHelp
+        }
+
+      ]
+    }
+
+    # The ModeController
+    DEF ModeController Script {
+
+      # Events in from the COSMOBROWSER:
+      eventIn SFString navType_in
+      eventIn SFBool   anyMode_in
+      eventIn SFBool   gravity_in
+      eventIn MFString navTypeList_in
+
+      # Events out to the COSMOBROWSER:
+      eventOut SFString navType_out
+      eventOut SFBool   gravity_out
+
+      # Events to/from the 4 ModeButtons and the Gravity button
+      #
+      eventIn  SFTime  walk_clicked
+      eventOut SFInt32 walk_setState
+      #
+      eventIn  SFTime  slide_clicked
+      eventOut SFInt32 slide_setState
+      #
+      eventIn  SFTime  look_clicked
+      eventOut SFInt32 look_setState
+      #
+      eventIn  SFTime  examine_clicked
+      eventOut SFInt32 examine_setState
+      #
+      eventIn  SFTime  gravity_clicked
+      eventOut SFInt32 gravity_setState
+
+      # Events in/out of our delay-line TimeSensor
+      eventOut SFTime  delay_start_out
+      eventIn  SFBool  delay_active_in
+
+      # Cached copies of the state from the COSMOBROWSER
+      field SFString navType_state "WALK"
+      field SFBool   anyMode_state TRUE
+      field SFBool   gravity_state TRUE
+      field MFString navTypeList_state NULL
+
+      # "Enabled" states of various buttons
+      field SFBool  wsl_enabled      FALSE
+      field SFBool  examine_enabled  FALSE
+      field SFBool  gravity_enabled  FALSE
+
+      # Misc constants
+
+      # navType_state values:
+      field SFString   walk_str    "WALK"
+      field SFString   look_str    "LOOK"
+      field SFString   slide_str   "SLIDE"
+      field SFString   fly_str     "FLY"
+      field SFString   examine_str "EXAMINE"
+
+      # ModeButton states:
+      field SFInt32    OFF   0
+      field SFInt32    ON    1
+      field SFInt32    DIS   2
+      # Gravity button states (off/on same as above):
+      field SFInt32    OFF_DIS  2
+      field SFInt32    ON_DIS   3
+
+      url "javascript:
+        function navType_in(str, time) {
+          navType_state = str;
+          update_state();
+          // And just in case, force another update_state() to
+          // happen soon:
+          delay_start_out = time;
+        }
+        function anyMode_in(bool, time) {
+          anyMode_state = bool;
+          update_state();
+          // And just in case, force another update_state() to
+          // happen soon:
+          delay_start_out = time;
+        }
+        function gravity_in(bool, time) {
+          gravity_state = bool;
+          update_state();
+          // And just in case, force another update_state() to
+          // happen soon:
+          delay_start_out = time;
+        }
+        function navTypeList_in(mfstr, time) {
+          navTypeList_state = mfstr;
+          update_state();
+          // And just in case, force another update_state() to
+          // happen soon:
+          delay_start_out = time;
+        }
+
+        function update_state() {
+          // Depending on navType_state and anyMode_state,
+          // set the states of all 4 ModeButtons and the gravity button:
+
+          // The mode button corresponding to the current navType is ON.
+          //
+          // The other mode buttons are 'inactive', which could
+          // be either OFF or DIS, depending on whether each button
+          // is 'enabled' or not.  The 'enabled' rules are:
+          //
+          // - If anyMode_state==true, all mode buttons are always enabled.
+          // - If anyMode_state==false:
+          //   - For WALK/SLIDE/LOOK: these mode buttons are enabled if
+          //     the navTypeList contains WALK or FLY.
+          //   - For EXAMINE: this mode button is enabled if
+          //     the navTypeList contains EXAMINE.
+          //
+
+          if (anyMode_state) {
+            wsl_enabled     = true;
+            examine_enabled = true;
+          }
+          else {
+            walk_or_fly_found = false;
+            examine_found = false;
+
+            for (i=0; i < navTypeList_state.length; i++) {
+              if ((navTypeList_state[i] == walk_str) ||
+                  (navTypeList_state[i] == fly_str))
+                walk_or_fly_found = true;
+              if (navTypeList_state[i] == examine_str)
+                examine_found = true;
+            }
+
+            wsl_enabled = walk_or_fly_found;
+            examine_enabled = examine_found;
+          }
+
+          wsl_inactiveState     = wsl_enabled     ? OFF : DIS;
+          examine_inactiveState = examine_enabled ? OFF : DIS;
+
+          // Handle every possible known navType_state
+          // WALK
+          if (navType_state == walk_str) {
+            walk_setState = ON;
+            slide_setState = OFF;
+            look_setState = OFF;
+            examine_setState = examine_inactiveState;
+            // (This is probably redundant):
+            wsl_enabled = true;
+          }
+          // FLY
+          else if (navType_state == fly_str) {
+            walk_setState = ON;
+            slide_setState = OFF;
+            look_setState = OFF;
+            examine_setState = examine_inactiveState;
+            // (This is probably redundant):
+            wsl_enabled = true;
+          }
+          // LOOK
+          else if (navType_state == look_str) {
+            walk_setState = OFF;
+            slide_setState = OFF;
+            look_setState = ON;
+            examine_setState = examine_inactiveState;
+            // (This is probably redundant):
+            wsl_enabled = true;
+          }
+          // SLIDE
+          else if (navType_state == slide_str) {
+            // Handle weird case of SLIDEing while in EXAMINE
+            // mode (by holding down ALT)! 
+            // If wsl_enabled is false, this must be the case; just 
+            // leave WALK and LOOK disabled, and SLIDE on:
+            if (!wsl_enabled) {
+              walk_setState = DIS;
+              slide_setState = ON;
+              look_setState = DIS;
+            }
+            else {  // wsl_enabled is true
+              walk_setState = OFF;
+              slide_setState = ON;
+              look_setState = OFF;
+            }
+            examine_setState = examine_inactiveState;
+            // (This is inappropriate sometimes! (see note above)):
+            //wsl_enabled = true;
+          }
+          // EXAMINE
+          else if (navType_state == examine_str) {
+            walk_setState = wsl_inactiveState;
+            slide_setState = wsl_inactiveState;
+            look_setState = wsl_inactiveState;
+            examine_setState = ON;
+            // (This is probably redundant):
+            examine_enabled = true;
+          }
+
+          // Other weird possible cases:
+          //   - UNKNOWN   (?)
+          //   - QUAKE
+          //   - NONE      (dashboard shouldn't even be visible)
+          // Make all the ModeButtons either OFF or DIS,
+          // depending on anyMode:
+          else {
+            walk_setState = wsl_inactiveState;
+            slide_setState = wsl_inactiveState;
+            look_setState = wsl_inactiveState;
+            examine_setState = examine_inactiveState;
+          }
+
+          // Update gravity button state:
+
+          // First figure out if it should be enabled or not:
+          // It's enabled if anyMode_state==true OR if the navTypeList
+          // contains *both* WALK and FLY.  
+          // Also, the gravity button is OFF_DIS by defn in EXAMINE mode.
+
+          if (navType_state == examine_str) {
+            gravity_enabled = false;
+            gravity_setState = OFF_DIS;
+          }
+          else {
+
+            if (anyMode_state) {
+              gravity_enabled = true;
+            }
+            else {
+              walk_found = false;
+              fly_found  = false;
+
+              for (i=0; i < navTypeList_state.length; i++) {
+                if (navTypeList_state[i] == walk_str)
+                  walk_found = true;
+                if (navTypeList_state[i] == fly_str)
+                  fly_found = true;
+              }
+
+              gravity_enabled = (walk_found && fly_found);
+            }
+
+            // Now set the button state
+            if (gravity_enabled) {
+              gravity_setState = gravity_state ? ON : OFF;
+            }
+            else {  // gravity button disabled
+              gravity_setState = gravity_state ? ON_DIS : OFF_DIS;
+            }
+          }
+        }
+
+        // Events from our delay TimeSensor
+        function delay_active_in(bool) {
+          // If !bool, that means the TimeSensor just finished.
+          // In that case, do an update_state():
+          if (!bool)
+            update_state();
+        }
+
+        // Handle clicks from the buttons
+        function walk_clicked(t) {
+          if (wsl_enabled)
+            navType_out = walk_str;
+        }
+        function slide_clicked(t) {
+          if (wsl_enabled)
+            navType_out = slide_str;
+        }
+        function look_clicked(t) {
+          if (wsl_enabled)
+            navType_out = look_str;
+        }
+        function examine_clicked(t) {
+          if (examine_enabled)
+            navType_out = examine_str;
+        }
+        function gravity_clicked(t) {
+          if (gravity_enabled) {
+            gravity_out = !gravity_state;
+          }
+        }"
+    }   # End of ModeController Script
+
+    # TimeSensor used by the ModeController to force an update_state()
+    # call to happen some time in the future
+    DEF ModeControllerDelay TimeSensor {
+      cycleInterval 0.05
+    }
+
+    # Script to enable/disable the View left and right arrow buttons
+    DEF ArrowEnabler Script {
+      eventIn SFInt32 num_vps_in
+      eventOut SFBool arrow_enable_out
+      url "javascript:
+        function num_vps_in(val) {
+          arrow_enable_out = (val > 1);
+        }"
+    }
+
+  ]
+
+  # Set up all the ModeController ROUTEs:
+
+  # COSMOBROWSER --> ModeController
+  #
+  ROUTE COSMOBROWSER.navType_changed TO ModeController.navType_in
+  ROUTE COSMOBROWSER.navTypeList_changed TO ModeController.navTypeList_in
+  ROUTE COSMOBROWSER.anyMode_changed TO ModeController.anyMode_in
+  ROUTE COSMOBROWSER.gravity_changed TO ModeController.gravity_in
+
+  # ModeController --> COSMOBROWSER
+  #
+  ROUTE ModeController.navType_out   TO COSMOBROWSER.set_navType
+  ROUTE ModeController.gravity_out   TO COSMOBROWSER.set_gravity
+
+  # ModeController <--> ModeButtons
+  #
+  ROUTE WALK_MB.clicked                TO ModeController.walk_clicked
+  ROUTE ModeController.walk_setState   TO WALK_MB.setState
+  #
+  ROUTE LOOK_MB.clicked                TO ModeController.look_clicked
+  ROUTE ModeController.look_setState   TO LOOK_MB.setState
+  #
+  ROUTE SLIDE_MB.clicked               TO ModeController.slide_clicked
+  ROUTE ModeController.slide_setState  TO SLIDE_MB.setState
+  #
+  ROUTE EXAMINE_MB.clicked              TO ModeController.examine_clicked
+  ROUTE ModeController.examine_setState TO EXAMINE_MB.setState
+  #
+  ROUTE GRAVITY_BUTTON.clicked          TO ModeController.gravity_clicked
+  ROUTE ModeController.gravity_setState TO GRAVITY_BUTTON.setState
+
+  # Hook up the ModeController's delay-line TimeSensor
+  ROUTE ModeController.delay_start_out TO ModeControllerDelay.startTime
+  ROUTE ModeControllerDelay.isActive TO ModeController.delay_active_in
+
+  # Hook up the ArrowEnabler script
+  ROUTE COSMOBROWSER.numViewpoints_changed TO ArrowEnabler.num_vps_in
+  ROUTE ArrowEnabler.arrow_enable_out TO VIEWRIGHTBUTTON.enable_in
+  ROUTE ArrowEnabler.arrow_enable_out TO VIEWLEFTBUTTON.enable_in
+
+}
+# v.37

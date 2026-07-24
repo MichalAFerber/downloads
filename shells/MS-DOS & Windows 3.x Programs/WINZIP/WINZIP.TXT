@@ -1,0 +1,140 @@
+WinZip(R) version 6.3 (SR-1)
+Copyright (C) 1991-1997 Nico Mak Computing, Inc.
+All Rights Reserved
+
+***************************************************************
+*** FOR INSTALLATION INSTRUCTIONS SEE THE FILE "README.TXT" ***
+***                                                         ***
+***  New users: please click the "Brief Tutorial" entry in  ***
+***           WinZip's "Help" pull-down menu.               ***
+***                                                         ***
+*** Press the F1 key at any time while running WinZip for   ***
+*** help or to access the complete online documentation.    ***
+***************************************************************
+
+Have you ever used the Internet or CompuServe?  If so, you've
+probably encountered ZIP files.  Are you a Windows user?  If so,
+WinZip is THE way to handle these archived files.
+
+WinZip brings the convenience of Windows to the use of Zip files
+and other compression formats.  Windows 95, NT, and Windows 3.1
+versions are shipped on the same disk.  WinZip features include:
+
+Windows 95 support:  WinZip includes long filename support and
+tight integration with the Windows 95 shell.  Drag and drop to or
+from the Explorer, or zip and unzip without leaving the Explorer.
+
+Internet support:  WinZip features built-in support for popular
+Internet file formats:  TAR, gzip, Unix compress, UUEncode,
+XXencode, BinHex, and MIME.  ARJ, LZH, and ARC files are supported
+via external programs.  You can use WinZip to access almost all
+the files you download from the Internet.  In addition, the freely
+downloadable WinZip Internet Browser Support Add-On lets you
+download and open archives with one click using Microsoft Internet
+Explorer or Netscape Navigator.  WinZip interfaces to most virus
+scanners.
+
+Built-in 100% PKZIP-compatible ZIP and UNZIP, including support
+for multi-disk Zip files (PKZIP and PKUNZIP are NOT required for
+any zipping or unzipping operations).
+
+The WinZip Wizard:  this optional feature uses the standard and
+familiar "wizard" interface to simplify the process of unzipping
+and installing software distributed in Zip files. The WinZip
+Wizard is not targeted at experienced users, but is ideal for the
+rapidly growing number of PC users getting started with Zip files.
+When these users gain confidence or want to use more advanced
+zipping features, the full WinZip Classic interface is just a
+click away.
+
+Create files that unzip themselves:  WinZip Self-Extractor
+Personal Edition is now included with WinZip.  Self-extracting
+files are ideal for sending compressed files to others who may not
+own or know how to use file compression software.
+
+                            * * * * *
+
+Recent awards include
+
+* 1997 "People's Choice" Shareware Industry Award
+
+* 1997 Home Office Computing "Editor's Pick" Award
+
+* 1996 PC Week Labs "Analyst Choice" Award (December 9)
+
+* 1996 PC Magazine "Best Utility" Shareware Award
+
+* 1996 Windows Magazine "Win100" Award
+
+* 1996 PC Computing "Best of the Internet" Award for compression
+
+In previous years WinZip was a finalist for the PC Computing 1995
+"MVP" Award, and was voted "Best Utility" at the 1994 annual
+Shareware Industry Awards, and won the Windows Magazine "Win100"
+Award in 1993.  Recent magazine quotes include:
+
+* "Easy to learn yet robust enough to satisfy power users",
+   PC Magazine, 4/8/97
+
+* "For working with .ZIP archives, there's no better tool than
+   WinZip", Windows Sources, 3/1/97
+
+* "The most essential utility to decompress all those pesky ZIP
+   files", PC World Online, 3/1/97
+
+* "It's rare to find one product in a hard-fought market category
+   that bests its competition in nearly every respect.  WinZip 6.2
+   is one of these products.  It towers over the rest of the
+   market."  PC Week 12/9/96
+
+* "Of the many file-compression and extraction utilities out
+   there, this one is the best - and the easiest to use"
+   Windows Magazine, 11/96
+
+                            * * * * *
+
+WinZip is extremely easy to use!  To open an archive simply double
+click on an archive listed in the File Manager or Explorer, drag
+and drop an archive onto WinZip, or use the standard Open dialog.
+The main WinZip window features a list box with the names, sizes,
+and date/time stamps of all files in the open archive.  This list
+can be scrolled and sorted on any field.  A tool bar provides fast
+access to commonly used actions.  All options (including window
+size and position) can be saved and restored.  Extensive context
+sensitive help is always available.
+
+Double clicking on a file in the main window has the same effect
+as double clicking in the File Manager or Explorer.  First the
+file is extracted from the archive.  If the file is executable, it
+is run.  Otherwise, the file is opened by the appropriate
+application (for example, Windows Write for *.WRI files) based on
+standard Windows associations.
+
+Under Windows 3.1 WinZip's unique "Install/Uninstall Feature"
+makes it easy to install and uninstall software distributed in
+archives.  This feature can save megabytes of disk space by
+tracking and removing all traces of an application.  WinZip will
+run the installation program in an archive, give you a chance to
+try the program, and optionally offer to restore your system to
+its original state.  The uninstall step can selectively remove
+folders, files, icons, or program groups created by an install
+program, and can restore any altered INI files.  You have complete
+control over the uninstall process, and no changes are made
+without approval.
+
+If an archive doesn't have an "install" or "setup" program you can
+use the CheckOut facility to easily try the files in the archive.
+The CheckOut facility will extract all files and create a program
+group with icons for all or some files.  Just double click on an
+icon in the CheckOut group to view the corresponding file with the
+appropriate application.  Later, WinZip will optionally delete the
+CheckOut files and program group.
+
+                            * * * * *
+
+The 32-bit version requires Windows 95 or Windows NT.  The 16-bit
+version requires Windows 3.1 or Windows for Workgroups.  While no
+other programs are required for basic operations involving ZIP,
+TAR, GZ, Z files, UUencoded, XXencode, BinHex, or MIME files,
+optional features require one or more external programs.  See the
+online help for details.

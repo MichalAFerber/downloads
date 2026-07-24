@@ -1,0 +1,30 @@
+;The Well service provider
+;
+; If you make a change to this file you should change the name (line above)
+; and copy it into the scripts directory (in case you change scripts).
+;
+set TelnetCommand=telnet \{System} \{Port}\r\n
+set CRLFProcessing=0
+;
+; This option selects an alternate method of sending mail if you are having
+; problems with SMTP posting.  You must place this line somewhere in the
+; [Switches] section of your Eudora.ini file.
+; UsePOPSend=1
+;
+cancelon "NO CARRIER"BUSY"NO DIALTONE"Login incorrect"
+;
+send ATDT {DialNumber}\r
+waitfor CONNECT
+;
+pause 1
+send \r
+pause 1
+send \r
+waitfor ogin:
+send {PopLogin}\r
+waitfor ssword:
+send {PopPass}\r
+waitfor "Options):"Help):"
+send exec srialpop\r
+waitfor %
+;

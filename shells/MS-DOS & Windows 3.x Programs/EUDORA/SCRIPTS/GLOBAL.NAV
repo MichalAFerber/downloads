@@ -1,0 +1,12 @@
+;Global Enterprise Services
+;
+Set TelnetCommand=telnet \{system} \{port} /stream\r\n
+Set CRLFProcessing=0
+;
+Cancelon |NO DIALTONE|BUSY|NO CARRIER|
+send ATDT {DialNumber}\r
+waitfor name:
+send {poplogin}\r
+waitfor ssword:
+send {PopPass}\r
+waitfor Alcatraz>

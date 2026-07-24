@@ -1,0 +1,23 @@
+;Internet Express
+;
+;
+set CRLFProcessing=0
+set TelnetCommand=telnet \{system} \{port}\r\n
+;
+cancelon ^Username/Password Incorrect^NO CARRIER^NO DIALTONE^BUSY^Connection closed by foreign host^
+send ATDT {DialNumber}\r
+waitfor CONNECT
+waitfor ername:
+send {poplogin}\r
+waitfor ssword:
+send {PopPass}\r
+waitfor continue
+send c\r
+waitfor continue...
+send \r
+waitfor selection >
+send 0\r
+waitfor CNS>
+send exec srialpop\r
+waitfor %
+

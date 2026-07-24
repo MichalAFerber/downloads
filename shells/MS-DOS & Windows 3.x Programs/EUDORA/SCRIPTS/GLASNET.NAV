@@ -1,0 +1,29 @@
+;Glasnet
+
+set TelnetCommand=telnet \{system} \{port}\r\n
+set CRLFProcessing=0
+
+cancelon ^ERROR^NO CARRIER^NO DIALTONE^BUSY^
+send ATDP {DialNumber}\r
+
+waitfor login:
+send {DialLogin}\r\n
+waitfor Password:
+send {DialPass}\r\n
+
+waitfor terminal type):
+send \r\n
+
+waitfor selection:
+send pop\r\n
+
+;This is only if when you see the selection:  menu choice and type an i, you 
+;get to a UNIX prompt.  There is no way for me to tell this here.  If you do 
+;get a UNIX prompt when you type and i at the selection: prompt, then 
+;continue the serial.nav as below: 
+;
+;waitfor (whatever the UNIX prompt looks like) 
+;send exec srialpop
+;
+waitfor %
+

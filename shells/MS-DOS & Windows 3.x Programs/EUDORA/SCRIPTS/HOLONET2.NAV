@@ -1,0 +1,23 @@
+;Holonet service provider (CCA class numbers)
+;
+; If you make a change to this file you should change the name (line above)
+; and copy it into the scripts directory (in case you change scripts).
+;
+set TelnetCommand=telnet \{System} \{Port}\r\n
+set CRLFProcessing=0
+;
+cancelon |NO CARRIER|BUSY|NO DIALTONE|incorrect|
+;
+send ATDT {DialNumber}\r
+waitfor CONNECT
+pause 1
+send \r
+pause 1
+send holoca\r
+waitfor ember
+send {DialLogin}\r
+waitfor word
+send {DialPass}\r
+waitfor erminal
+send eudora\r
+waitfor Eudora:

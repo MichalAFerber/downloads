@@ -1,0 +1,15 @@
+;Cerfnet Service Provider
+;
+Set TelnetCommand=telnet \{system} \{port} /stream\n
+Set CRLFProcessing=0
+;
+Cancelon |NO DIALTONE|BUSY|NO CARRIER|
+send ATDT {DialNumber}\r
+waitfor CONNECT
+send \r
+waitfor Username:
+send {Poplogin}\r
+waitfor ssword:
+send {PopPass}\r
+pause 1
+waitfor net>

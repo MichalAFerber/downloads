@@ -1,0 +1,67 @@
+08/03/95 - mIRC v2.5a
+
+Bug Fixes/Additions:
+1) added "always retrieve local host" option for people who have
+   dynamic IP addresses!
+2) channel mode in title is permanently on. not an option anymore.
+3) Added ctcp USERINFO command for compatibility. However, it returns
+   the same information as a ctcp finger command.
+4) moved some options to different windows were they made more sense.
+5) added /finger and /auto commands.
+6) fixed problem with releasing memory... popup menus weren't
+   being freed properly so mIRC would lose as much memory as
+   the size of the popup menus defined by the user. With the
+   mirc.ini that comes with the program, this turned out to be
+   3k+ of system resources everytime the program is run.
+7) the MODE for channel mode changes gets messy when lots of
+   mode changes occur. cleaned it up.
+8) Window names in Window menu would not switch to the correct
+   window when selected.
+9) Text buffers for windows were not being freed properly.
+
+10) Can now set the default font for the status/finger/list windows
+    from their system menu. Only the DCC Send/Get windows have to
+    be set from the font dialog window.
+11) added auto-log option for channels and query/dcc chat.
+12) Commands such as /finger and /run can now be used off-line.
+13) Corrected some mistakes in the mirc.ini file.
+
+05/03/95 - mIRC v2.4a
+
+Bug Fixes/Additions:
+1) major update of window handling - made more robust.
+2) notify would keep notifying even if it was still waiting
+   for previous notify to be returned by server.
+3) popup menu positioning was incorrect in some situations.
+
+02/03/95 - mIRC v2.3a
+
+Bug fixes/Additions:
+1) dcc get received file okay but closed connection too early.
+2) dcc send/get/chat were re-initiating arrays too early,
+   didn't cause problems but made the program beep everytime you
+   closed a window because the array was empty. 
+3) some debug information was being printed! Arrrrgh! forgot to
+   turn off the debug switch in the first release :)
+4) updated help file with description of previously coded but
+   forgotten items.
+5) In dcc get, if sender client did not specify size of file
+   (which it should!) then mIRC said the size was zero bytes.
+   Now it just says [unknown].
+6) highlighting now works properly.
+7) ".." previous directory wasnt showing up in dcc send dialog.
+8) the channel listbox wasnt adding/removing nicks properly.
+9) double-click for ban list. clicking twice only in the SAME
+   place now brings ban list up.
+
+10) added option to display file size instead of percent complete
+    in DCC send/get transfers.
+11) fixed timer display: wasnt displaying timer after nick change.
+12) adds "/nick " to editbox if both nicks collide on login.
+13) dcc send/get had problems with packet size. fixed.
+14) other cosmetic changes.
+
+28/02/95 - mIRC v2.1a
+
+First public release.
+

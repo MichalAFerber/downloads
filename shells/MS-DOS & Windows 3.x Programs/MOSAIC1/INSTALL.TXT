@@ -1,0 +1,375 @@
+
+NCSA Mosaic for Microsoft Windows
+Installation and Configuration Guide
+
+Introduction
+============
+This is a step-by-step guide to installing and configuring NCSA Mosaic for 
+Microsoft Windows.  This guide assumes that the system on which you are 
+installing NCSA Mosaic meets the following criteria:
+o  Microsoft Windows is properly installed and configured.
+o  Utilities such as ftp, pkunzip, and an ASCII editor are available.
+o  The system is connected to the Internet.
+
+Acquiring the Software
+======================
+Since you are reading this file, you probably already have the NCSA Mosaic 
+for Microsoft Windows software.  If that is the case, you can skip this 
+section.
+
+If you do not have the software, start by moving to a location where 
+applications are normally installed on your system and create a subdir- 
+ectory for NCSA Mosaic.  The subdirectory name is arbitrary; the name 
+"mosaic" is used here to clarify the following discussion.  Move into the 
+new subdirectory:
+  mkdir mosaic
+  cd mosaic
+
+Now you are ready to log on to NCSA's FTP server and download the NCSA 
+Mosaic files:
+  ftp ftp.ncsa.uiuc.edu
+      At the login prompt, enter "anonymous"
+      At the password prompt, enter your email address 
+          (e.g., "jdoe@business.com")
+  get README.FIRST
+  cd PC/Mosaic
+  ls                    (To list the available files and directories)
+  bin                   (To change to binary mode for the file transfer)
+  get wmos1_0.zip
+
+The filename "wmos1_0.zip" will change with each release and update.  It 
+will always be in the format "wmos<version>.zip" where <version> is the
+current version number.  For example, "wmos1_0.zip" is the filename for 
+NCSA Mosaic version 1.0; the filename for the sixth beta release was 
+"wmos0_6b.zip".
+
+If you have never downloaded PC files from NCSA's server, read the file 
+"README.FIRST" now.  It provides useful information that may facilitate 
+later steps in the installation process. 
+
+The file "wmos1_0.zip" is a compressed archive containing the NCSA Mosaic 
+executable and several documents, including this guide and a tutorial. A 
+user's manual will be included when it is available, but it is not avail- 
+able for the initial release.  Execute the following command to retrieve 
+the files from the compressed archive:
+  pkunzip wmos1_0.zip
+
+Confirming the Files
+====================
+Once you have downloaded and uncompressed the NCSA Mosaic files, the 
+installation process is straightforward.  Check to make sure all of the 
+following files exist in the "mosaic\" directory:
+    features.txt      Current list of features in ASCII format
+    features.wri      Current list of features in Microsoft Write format
+    install.txt       This guide as an ASCII file
+    install.wri       This guide in Microsoft Write format
+    mosaic.exe        The NCSA Mosaic executable
+    mosaic.ini        The initialization and configuration file for
+                                NCSA Mosaic
+    readme.now        Last minute or emphasized information 
+
+Read the file "readme.now".  It may contain last minute information that 
+was not available when this document was prepared.
+
+If you want to review the list of NCSA Mosaic features, you may read the 
+file "features.txt" or the file "features.wri".  Or you can wait until you 
+have NCSA Mosaic running and read the features list in the following 
+document:
+  http://www.ncsa.uiuc.edu/SDG/People/cwilson/WinMosaic.html
+
+Checking the WinSock DLL
+========================
+NCSA Mosaic is a WinSock 1.1-compliant program and requires that you have a 
+WinSock 1.1-compliant sockets DLL ("winsock.dll") installed to provide the 
+TCP/IP networking under windows.  Check your WinSock implementation's 
+installation guide to see whether it is WinSock 1.1-compliant. 
+
+If you are using a commercial TCP/IP stack such as PC-NFS, or running a 
+local area network such as Novell in addition to the TCP/IP, you must 
+obtain the WinSock DLL directly from your network vendor. 
+
+If your WinSock DLL is not WinSock 1.1-compliant or you do not have a 
+WinSock DLL installed, and if you are using a stand-alone system on the 
+Internet, then you can use the shareware Trumpet WinSock.  A compressed 
+copy of this WinSock implementation can be found on NCSA's FTP server in 
+the directory "PC/Mosaic/sockets/".  Download the files "disclaim.txt" and 
+"winsock.zip".  (If you want to make sure you have the latest version of 
+the Trumpet WinSock, it can be acquired via anonymous FTP from the server 
+"biochemistry.bioc.cwru.edu" in the directory "/pub/trumpwsk".)
+
+Configuring NCSA Mosaic
+=======================
+To configure NCSA Mosaic, first copy the file "mosaic.ini" to the directory 
+"\windows". This is important because NCSA Mosaic will not otherwise 
+recognize and save configuration changes.  Be sure to leave a copy of 
+"mosaic.ini" in the "mosaic\" directory in case you need to restore any 
+original entries.
+
+Edit the file "\windows\mosaic.ini" as follows using Notepad, edit, or any 
+other ASCII editor.  General users will not usually need to modify fields 
+that are not mentioned in the following discussion.
+
+Main section:
+-------------
+If you do not want NCSA Mosaic to automatically load a document every time 
+you run it, set Autoload Home Page to no:
+  Autoload Home Page=no
+
+If you want to change the first document that is automatically loaded when 
+NCSA Mosaic is run, change the Home Page entry to point to the document you 
+want to load.  As distributed, NCSA Mosaic points to a customized Hope Page 
+on NCSA's Web server:
+  Home Page=http://www.ncsa.uiuc.edu/SDG/People/cwilson/WinMosaic.html
+
+If you will be using Mosaic over a slow network connection and do not want 
+inline images to be automatically transferred, set Display Inline Images to 
+no.  Inline images will be replaced with an NCSA logo:
+  Display Inline Images=no
+
+If you can be reached via Internet email, put your full email address in 
+quotes in the E-mail field.  This is used for annotations and for a return 
+address when you select Mail to Developers.  If your login ID is jdoe and 
+you work at Business, Inc., your email entry might read as follows:
+  E-mail="jdoe@business.com"
+
+The Grey Background entry allows you to specify whether the NCSA Mosaic 
+window has a white (no) or grey (yes) background.  Many documents posted to 
+the Web are tuned to a grey background:
+  Grey Background=yes
+
+Settings section:
+-----------------
+The anchor color is the color of the hyperlink anchors that appear in an 
+NCSA Mosaic document.  You may set the anchor color to any valid RGB (red, 
+green, blue) combination.  The RGB values must be separated by commas and 
+can range from 0 to 255.  As posted on the FTP server, the default color is 
+blue (0,0,255):
+  Anchor Color=0,0,255
+
+In some instances, it is desirable to have NCSA Mosaic underline hyperlink 
+anchors (e.g, when using a gray scale or monochrome monitor).  As dist-
+ributed, NCSA Mosaic is set to underline hyperlink anchors.  Since under- 
+lining slows performance somewhat, you may wish to set Anchor Underline to 
+no if your system has a color monitor:
+  Anchor Underline=no
+
+Mail section:
+-------------
+Edit the Default Title to contain the message you want to have appear in 
+the subject line when you send email to the NCSA developers via the 
+"Mail to Developers" selection on the Help menu.  As distributed, NCSA 
+Mosaic enters the phrase "WinMosaic auto-mail feedback":
+  Default Title="WinMosaic auto-mail feedback"
+
+Services section:
+-----------------
+If you want to use NCSA Mosaic's news support, set your network news (NNTP) 
+server here.  As distributed, NCSA Mosaic specifies the University of 
+Illinois' NNTP server:
+  NNTP Server="news.cso.uiuc.edu"
+
+NCSA Mosaic uses the SMTP server specified here to send mail back to the 
+NCSA developers when you select Mail developers from the Help menu. As 
+distributed, NCSA Mosaic specifies NCSA's FTP server because it is known 
+and almost always available.   If you have a local SMTP server that you 
+would rather use, edit the entry accordingly:
+  SMTP Server="ftp.ncsa.uiuc.edu"
+
+Viewers section:
+----------------
+This section contains two subsections.  The first subsection contains a 
+list of file types in MIME (Multimedia mail) form.  The second subsection 
+specifies the viewer for each of the listed file types.  This information 
+is used to determine whether an external viewer must be launched to view a 
+file and, if so, which viewer to launch.
+
+If necessary, edit the */* entries in the second Viewers subsection to 
+point to your viewers.  If you do not have a viewer for a file type, leave 
+the line alone.  You may add arbitrary spawning of external viewers by 
+defining a new TYPE#, specifying a viewer, and optionally providing a 
+suffix list.
+
+NCSA Mosaic must use telnet to connect to some information servers.  To do 
+so, NCSA Mosaic needs to know where to find the telnet application on your 
+system.  Specify the full pathname for you telnet application in the telnet 
+entry at the end of the Viewers section:
+  telnet="c:\trumpet\telw.exe" 
+
+Suffixes section:
+-----------------
+This section lists the filename suffixes used to identify the file types of 
+files retrieved via FTP or from HTTP version 0.9 servers.  In such 
+situations, NCSA Mosaic uses the information in this section and in the 
+Viewers to determine whether an external viewer must be launched to view a 
+file and, if so, which viewer to launch.  Files that reside on HTTP version 
+1.0 servers are typed by the server and only the information in the Viewers 
+section is used.
+
+You may list any number of filename extensions for a given file type; 
+simply separate them by commas.
+
+The last suffix listed will be used when writing a file of that type to the 
+local hard drive.  If your external viewer requires a particular extension, 
+make sure that it is listed last.
+
+Consider the example of the JPEG file type.  The line 
+  image/jpeg=.jpeg,.jpe,.jpg
+indicates that any file with the suffix ".jpeg", ".jpe", or ".jpg" is a 
+JPEG image.   Now look at the preceding section of the file.  The lines
+  TYPE3="image/jpeg"
+and
+  image/jpeg="c:\windows\apps\lview\lview30 %ls"
+define a JPEG image as TYPE3 and identify the required external viewer.  
+Using the information in the Suffixes and Viewers sections of this file, 
+NCSA Mosaic will recognize files with the extensions ".jpeg", ".jpe", and 
+".jpg" as JPEG images and know that it must launch the external viewer 
+lview30 when it encounters them.
+
+Viewers specified in this section must be able to take a specified filename 
+as a command line argument.
+
+Annotations section:
+--------------------
+Change the Directory entry to point to the directory on your local hard 
+disk where you want to store personal annotations. 
+
+Change the Default Title to the title you want to use for your personal 
+annotations.
+
+User Menu sections:
+-------------------
+This specifies the user-configured menus.  NCSA Mosaic will accommodate up 
+to ten user-configured menus in any combination of top level and pop-out 
+menus.  Top level menus ("Menu Type=TOPLEVEL") will show up in the main 
+menu bar; otherwise, the menu must be listed as a pop-out from one of the 
+top level menus.
+
+User-configured menus are specified as follows.  The first line indicates 
+the number of the menu while the next one or two lines name the menu and 
+specify whether it is a top level menu.  If the second user-configured menu 
+is to be a top level menu named Demos, the first three lines of the menu 
+specification would be
+  [User Menu2]
+  Menu Type=TOPLEVEL
+  Menu Name="Demos"
+
+If the menu is to be a pop-out menu, omit the second line above.
+
+These initial lines are followed by several lines specifying the items 
+(Item#) in the menu.  Each Item# line must begin with "Item#=" and the rest 
+of the line must be in one of the following formats.  A line specifying a 
+hotlink must list a document and the URL with which it can be located 
+separated by a comma:
+  Item1=Vatican Exhibit,http://www.ncsa.uiuc.edu/SDG/Experimental/
+        vatican.exhibit/Vatican.exhibit.html
+
+A line specifying a menu separator must contain the word "SEPARATOR":
+  Item2=SEPARATOR
+
+A line specifying a pop-out menu must contain the word "MENU" and the 
+number of the pop-out menu, taken from the first line of another 
+user-configured menu, separated by a comma:
+  Item3=MENU,User Menu4
+
+HotList section:
+----------------
+You can maintain a hotlist of files you wish to have conveniently 
+available.  The hotlist is maintained here and displayed when you select 
+"Open URL" on the File menu and press the arrow button on the right side of 
+the window.
+
+You can edit the hotlist directly in this section.  If you want to delete a 
+file from the hotlist, delete the corresponding line from this section.   
+If you want to reorder the files, simply rearrange and renumber the URL# 
+lines.  Note that the entries must be numbered sequentially, starting with 
+"URL0".  The easiest way to add a file to your hotlist is to bring the file 
+up in NCSA Mosaic then select "Add Current to Hotlist" from the Hotlist 
+menu; if you prefer, you can add files by editing this section directly.
+
+The Hotlist menu will be merged with the user-configurable menus in a 
+future release.
+
+Document Caching section:
+-------------------------
+This sections tells NCSA Mosaic how many documents to cache so that you do 
+not have to return to the network to retrieve a recently viewed document.  
+As distributed, NCSA Mosaic caches 5 documents:
+  Number=5
+
+If you have lots of memory on your system, you can increase the cache 
+number.  If you have little memory, you may wish to decrease the number.  
+If you want to turn caching off, set it to 0 (zero).
+
+Do not modify the Type entry.
+
+Font sections:
+--------------
+Do not edit this section directly; all font changes must be made from the 
+Options menu.
+
+Main Window section:
+--------------------
+Do not edit this section directly; adjust the NCSA Mosaic window size with 
+the mouse and select "Save Window Size" on the File menu to save the new 
+dimensions.
+
+Finding Viewers
+===============
+NCSA Mosaic for Microsoft Windows uses external viewers and players to 
+display certain types of files, such as JPEG images or MPEG movies.  These 
+viewers and players are separate applications and they are neither 
+maintained nor formally distributed by NCSA.
+
+However, NCSA is always watching for particularly suitable viewers and 
+players.  When one is located that NCSA can legally distribute, a copy is 
+placed on NCSA's FTP server in the directory "PC/Mosaic/viewers".  If you 
+do not have a good viewer or player for a particular file type, check this 
+directory.  If you find a suitable viewer or player that is not in this 
+directory, please let NCSA know about it.  (One way to communicate that 
+information is to select "Mail to Developers" on the Help menu.)
+
+Installing into Microsoft Windows
+=================================
+You are now ready to install NCSA Mosaic into the Microsoft Windows system. 
+Select "New..." on the Program Manager's File menu.  Select "Program Item" 
+and click on "OK" to add NCSA Mosaic to a Program Group.
+
+Executing and Testing NCSA Mosaic
+=================================
+Execute NCSA Mosaic now.  If everything is properly configured and domain 
+name serving is set up, NCSA Mosaic should be able to load documents 
+successfully.  Test this by selecting "Windows Mosaic Home Page" from the 
+Demos menu. 
+
+If NCSA Mosaic hangs on execution or misbehaves in any other unexplained 
+fashion, the most likely source of the problem is the WinSock DLL.  See 
+"Checking the WinSock DLL" near the beginning of this guide.
+
+If you are able to execute NCSA Mosaic but selecting "Windows Mosaic Home 
+Page" did not work, try the following exercises and include the results in 
+your query to NCSA.  The results will help NCSA technical support determine 
+the nature of your problem:
+o  Select "Open Local File" on the File menu and try to open a file on your 
+   system.
+o  Select "Open URL" on the File menu and try to open an HTTP file on a 
+   remote Web server.  The URL "http://cs.indiana.edu/home-page.html" will 
+   provide a good test.
+o  Select "Open URL" on the File menu and try to open an FTP file on a 
+   remote Web server.  The URL "file://cs.uwp.edu/pub/music/kurzweil" will 
+   provide a good test.
+
+Feedback to NCSA
+================
+Your comments on NCSA Mosaic are important; user feedback is an integral 
+part of the Software Development Group's (SDG's) planning activities.  Bug 
+reports are particularly valuable because SDG's tests cannot duplicate all 
+user environments and equipment configurations.  Bug reports should include 
+enough information to enable SDG developers to reproduce the problem.
+
+To send bug reports, comments, and suggestions, select "Mail to Developers" 
+on the Help menu, fill out the form that appears, and click on Send when it 
+is ready to go.  If "Mail to Developers" does not work, send an email 
+message to the following address:
+  mosaic-win@ncsa.uiuc.edu
+
+

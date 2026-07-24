@@ -1,0 +1,14 @@
+;Class Service Provider
+;
+:
+set CRLFProcessing=0
+set TelnetCommand=telnet \{system} \{port} /stream\r\n
+;
+cancelon |NO DIALTONE|BUSY|NO CARRIER|incorrect|
+send ATDT {DialNumber}\r
+waitfor CONNECT
+waitfor name:
+send {PopLogin}\r
+waitfor ssword:
+send {PopPass}\r
+waitfor net>

@@ -1,0 +1,118 @@
+;Default (must modify)
+;
+; If you make a change to this file you should change the name (line above)
+; and copy it into the scripts directory (in case you change scripts).
+;
+; Below is a generic navigation script.  More than likely it will not work
+;  For your specific installation.  
+
+cancelon ^ERROR^NO CARRIER^NO DIALTONE^BUSY^
+send ATDT {DialNumber}\r
+waitfor CONNECTED
+waitfor ogin:
+send {DialLogin}\r
+waitfor ssword:
+send {DialPass}\r
+waitfor $
+; If you are dialing into a Unix system you should run srialpop.  Srialpop
+;  creates an echoless telnet session which is required by Eudora.  Annex
+;  terminal server require the following telnet command:
+;     stty -echo\ntelnet -r {System} {Port}
+;
+;  Cisco terminal servers use the following command:
+;     telnet {System} {Port} /stream
+;  
+;  Eudora must have an echoless telnet session in order to operate properly.
+;
+; exec srialpop
+; waitfor %
+;
+;  HOW TO CREATE A DIALIN SCRIPT
+;
+;	This dialup file is responsible for dialing the phone number (via
+;   the {DialNumber} variable) and navigating to the system prompt of your
+;   system/terminal server.  Contact your Internet service provider or
+;   system administrator and ask if they have a navigation script that
+;   works with Eudora.  If not, it will be necessary to edit this file
+;   file to match the login requirements of your particular Internet
+;   service provider.
+;
+;	Note:	Prior to editing the default SERIAL.NAV file you will need
+;		to be familiar with all of the available commands and
+;		variables.  These are defined in the Dialup File Command
+;		Lines section of this appendix.
+;
+;	This file contains a generic dialup script.  Prior to editing this
+;   script, you will need to know the navigation sequence for getting to
+;   your host/terminal server system prompt.  You can accomplish this by
+;   dialing into the host system using a standard terminal program that
+;   saves your login session, such as the one that comes with Windows
+;   (Terminal).  This will tell you what prompts to expect from the system
+;   and what commands to send it.  Using the commands and variables at your
+;   disposal, edit the navigation sequence accordingly.
+;
+;	Note:	An example dialup session and the resulting navigation
+;		sequence are provided at the end of this file.
+;
+;
+;   When using the waitfor command you want to grab the last possible unique
+;   target.  This will enable the send command to be more effective.  There
+;   are no wild cards in the waitfor commands.  You may wish to waitfor both
+;   parts of the prompt.  eg:
+;
+;       system-prompt8:
+;
+;       waitfor system-prompt
+;       waitfor :
+;
+;   This will grab both the first part of the system prompt, and the port
+;   number, which may not be the same for each login.
+;
+;   You may also set some Dialup INI variables in this script.  We recommend
+;   that you set the TelnetCommand and the CRLFProcessing variables here.
+;
+;   An example dialin session and script file follow.
+;
+; --------------------------------------------
+;       Terminal capture of an Annex session
+;AT
+;OK
+;ATDT 95508350
+;CARRIER 1200
+;
+;PROTOCOL: LAP-M
+;
+;COMPRESSION: V.42BIS
+;
+;CONNECT 1200/ARQ
+;
+;
+;Annex Command Line Interpreter   *   Copyright 1991 Xylogics, Inc.
+;
+;Checking authorization, Please wait...
+;Annex username: mark
+;Annex password:
+;
+;Permission granted
+;
+;        This dialup is for Authorized users only.
+;
+;sddc-annex 2:
+;
+; -------------------------------------------------
+;       This is the nav file for the above session
+;
+;set TelnetCommand=stty -echo\ntelnet -r \{System} \{Port}\r\n
+;set CRLFProcessing=1
+;
+;send ATDT {DialNumber}\r
+;waitfor CONNECT
+;waitfor Annex
+;send \r
+;waitfor name:
+;send {DialName}\r
+;waitfor word:
+;send {DialPass}\r
+;waitfor sddc-annex
+;waitfor :
+;

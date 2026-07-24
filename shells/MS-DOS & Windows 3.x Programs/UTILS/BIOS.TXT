@@ -1,0 +1,23 @@
+ ษออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออออป
+ บ   URABIOS System Configuration (c) 1985-1993, American Magnetrons Inc.,    บ
+ ฬอออออออออออออออออออออออออออออออออออออัออออออออออออออออออออออออออออออออออออออน
+ บ Main Processor     : 80486DX2       ณ Base Memory Size   : 640 KB          บ
+ บ Numeric Processor  : None           ณ Ext. Memory Size   : 7168 KB         บ
+ บ Floppy Drive A:    : 1.44 MB, 3ซ"   ณ Hard Disk C: Type  : ZIP             บ
+ บ Floppy Drive B:    : None           ณ Hard Disk D: Type  : None            บ
+ บ Display Type       : VGA/PGA/EGA    ณ Serial Port(s)     : 3F8             บ
+ บ URABIOS Date       : 01/25/15       ณ Parallel Port(s)   : None            บ
+ ศอออออออออออออออออออออออออออออออออออออฯออออออออออออออออออออออออออออออออออออออผ
+ 256 KB CACHE MEMORY
+
+ Booting...
+
+
+
+
+
+
+
+
+
+

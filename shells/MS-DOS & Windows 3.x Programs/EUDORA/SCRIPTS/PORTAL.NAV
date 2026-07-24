@@ -1,0 +1,24 @@
+;Portal
+;
+
+set CRLFProcessing=0
+set TelnetCommand=telnet \{system} \{port}\r\n
+;
+;
+cancelon ^ERROR^NO CARRIER^NO DIALTONE^BUSY^Login incorrect^
+send ATDT {DialNumber}\r
+waitfor CONNECT
+send \r
+waitfor help:
+send shell\r
+waitfor ogin:
+send {PopLogin}\r
+waitfor ssword:
+send {PopPass}\r
+pause 2
+;waitfor problem and are working on correcting it
+waitfor vt100
+send \r
+waitfor %
+send exec srialpop\r
+waitfor %

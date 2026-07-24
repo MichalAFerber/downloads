@@ -1,0 +1,70 @@
+		MICROSOFT MOUSE README.DOC
+
+	This document contains information that supplements the
+	"Microsoft Mouse User's Guide".
+
+
+	            MICROSOFT MOUSE SOFTWARE NOTES
+
+	Use of MS-DOS APPEND during Mouse installation:
+	MSETUP may not work properly if you've used the MS-DOS APPEND
+	command.  If APPEND is in effect then remove it by typing
+	APPEND; at the DOS command line (include the semicolon).
+
+
+	Microsoft Mouse Drivers -- Older Versions:
+	MSETUP will delete any line containing "CPANEL" in the
+	AUTOEXEC.BAT file (unless the line starts with "SET," "PATH,"
+	or "REM").
+
+
+	Single-drive PCs:
+	If you have a single-drive PC without a hard disk, you will
+	not be able to use the Mouse Setup program (MSETUP) to
+	set up the mouse software.
+
+	On a single-drive PC, you must install the mouse driver yourself.
+	Copy MOUSE.COM onto the disk you use to start your computer. You
+	can then load the mouse driver manually each time you start
+	your system, by typing "mouse" at the DOS prompt, or you can insert
+	the "mouse" command in your AUTOEXEC.BAT file to load the mouse
+	driver automatically every time the system starts up.
+
+
+	Loading the mouse driver automatically at system startup:
+	MSETUP installs the mouse driver, MOUSE.COM.  At your option, it
+	will also modify your AUTOEXEC.BAT file so the mouse driver will
+	load automatically every time you start your system.  MSETUP
+	will also insert comments (lines that begin with REM) in your
+	AUTOEXEC.BAT file to illustrate how the mouse utility SETSPEED.EXE
+	can be invoked automatically as well.  See your "Microsoft Mouse
+	User's Guide" for a discussion of SETSPEED.EXE.
+
+	Using the new Mouse software with Microsoft Windows:
+	If you want to use your new Mouse driver software, including the
+	"ballistic" characteristics, with Microsoft Windows you must
+	replace the MOUSE.DRV file on the backup copy of your Windows
+	Setup disk with the MOUSE.DRV file located on the Utility or Setup
+	disk in your Microsoft Mouse package and then reinstall Windows.
+	You may want to make a backup copy of your WIN.INI file before
+	doing the reinstallation.  For more information on installing
+	Microsoft Windows, see the "Microsoft Windows User's Guide."
+
+	OS/2 mouse driver:
+	This release includes a Microsoft OS/2 Mouse driver program.
+	This program is in the file OS2MOUSE.SYS on the same diskette that
+	includes the mouse demonstration program, BOA.  For specific
+	OS2MOUSE.SYS installation directions please refer to the system
+	configuration instructions in your OS/2 user's documentation.
+
+	Note that OS2MOUSE.SYS will work with either type of Microsoft
+	Mouse, InPort or Serial-PS/2.  You do not need separate drivers
+	for the different types of mice.
+
+	            ADDITIONAL INFORMATION
+
+	Additional readme files:
+	Additional information regarding the software included in your
+	Microsoft Mouse package have been included in a readme file.
+	Please check the other diskettes for PBREADME.DOC and MENUREAD.ME
+	respectively.

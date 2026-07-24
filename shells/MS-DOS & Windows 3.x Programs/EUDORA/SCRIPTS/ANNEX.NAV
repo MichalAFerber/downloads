@@ -1,0 +1,25 @@
+;Annex navigation
+;
+; If you make a change to this file you should change the name (line above)
+; and copy it into the scripts directory (in case you change scripts).
+;
+set TelnetCommand=stty -echo\ntelnet -r \{System} \{Port}\r
+set CRLFProcessing=1
+;
+cancelon "NO CARRIER"BUSY"NO DIALTONE"Username/Password Incorrect"
+;
+send ATDT {DialNumber}\r
+waitfor CONNECT
+waitfor Annex
+send \r\n
+waitfor Annex username:
+pause 1
+send {DialLogin}\r\n
+waitfor password:
+pause 1
+send {DialPass}\r\n
+; You may want to waitfor the first part of the system prompt in addition
+; to the colon to make this script a little more robust.
+; eg: waitfor annex
+waitfor :
+;

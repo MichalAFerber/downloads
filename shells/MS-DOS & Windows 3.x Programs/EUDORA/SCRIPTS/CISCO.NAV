@@ -1,0 +1,13 @@
+;Cisco navigation
+;
+; If you make a change to this file you should change the name (line above)
+; and copy it into the scripts directory (in case you change scripts).
+;
+set TelnetCommand=telnet \{System} \{Port} /stream\r
+set CRLFProcessing=0
+;
+cancelon "NO CARRIER"BUSY"NO DIALTONE"
+;
+send ATDT {DialNumber}\r
+waitfor CONNECT
+waitfor >
