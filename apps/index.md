@@ -1,22 +1,22 @@
 ---
-title: "Downloads"
+title: "Apps"
+description: "Curated modern and classic utilities — each with a direct download."
 type: index
 status: active
 tags:
-  - intranet
   - downloads
+  - apps
 ---
 
-# Downloads
+Curated modern and classic utilities. Each page has a short description and a
+direct download.
 
-<!-- AUTOINDEX:START — managed by update-intranet-indexes.sh; edits inside are overwritten -->
-## Files in this folder
+- [Delpart](delpart/) — partition deletion utility (Windows)
+- [EditPad Classic](editpad-classic/) — compact tabbed text editor (Windows)
+- [Latest](latest/) — installed-app update checker (macOS)
+- [Mist](mist/) — macOS installer &amp; firmware downloader (macOS)
+- [Notepad++](notepad-plus-plus/) — source-code editor (Windows)
+- [PuTTY](putty/) — SSH/Telnet terminal &amp; file-transfer suite (cross-platform)
+- [Rufus](rufus/) — bootable-USB creator (Windows)
 
-- <a href="/downloads/delpart/">Delpart/</a>
-- <a href="/downloads/editpad-classic/">EditPad Classic/</a>
-- <a href="/downloads/latest/">Latest/</a>
-- <a href="/downloads/mist/">Mist/</a>
-- <a href="/downloads/notepad-plus-plus/">Notepad Plus Plus/</a>
-- <a href="/downloads/putty/">PuTTY/</a>
-- <a href="/downloads/rufus/">Rufus/</a>
-<!-- AUTOINDEX:END -->
+[← Back to Downloads](../)

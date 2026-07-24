@@ -14,9 +14,9 @@ tags:
   - "open-source"
 ---
 
-# Mist <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/apple-retro.svg" alt="macOS" width="20">
+<p><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/apple-retro.svg" alt="macOS" width="20"> macOS</p>
 
-![Mist](intranet/_assets/attachments/downloads_mist.avif)
+![Mist](downloads_mist.avif)
 
 **GitHub:** [ninxsoft/Mist](https://github.com/ninxsoft/Mist/)
 **Developer:** ninxsoft
@@ -33,11 +33,6 @@ A Mac utility for listing, downloading, and creating bootable installers for all
 - Automatic verification of downloads
 - Create bootable installers on external drives
 
+[![Download](https://img.shields.io/badge/Download-Mist.0.9.1.dmg-blue)](Mist.0.9.1.dmg)
 [![GitHub](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/ninxsoft/Mist/)
-[![Download](https://img.shields.io/badge/Download-Mist-blue)](https://github.com/ninxsoft/Mist/releases)
-
-<!-- AUTOINDEX:START — managed by update-intranet-indexes.sh; edits inside are overwritten -->
-## Files in this folder
-
-_No files in this folder yet._
-<!-- AUTOINDEX:END -->
+[![Latest Release](https://img.shields.io/badge/GitHub-Latest%20Release-lightgrey?logo=github)](https://github.com/ninxsoft/Mist/releases)

@@ -14,7 +14,7 @@ tags:
   - "open-source"
 ---
 
-# Notepad++ <img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/windows-retro.svg" alt="Windows" width="20">
+<p><img src="https://cdn.jsdelivr.net/gh/selfhst/icons/svg/windows-retro.svg" alt="Windows" width="20"> Windows</p>
 
 ![Notepad++](downloads_notepadplusplus.svg)
 
@@ -37,11 +37,5 @@ A free, open-source source code editor and Notepad replacement that supports num
 Notepad++ emphasizes being environmentally friendly by reducing CPU usage and power consumption.
 
 <img src="https://img.shields.io/badge/license-GPL--3.0-blue" alt="License">
+[![Download](https://img.shields.io/badge/Download-npp.8.7.4.Installer.x64.exe-blue)](npp.8.7.4.Installer.x64.exe)
 [![GitHub](https://img.shields.io/badge/github-repo-blue?logo=github)](https://github.com/notepad-plus-plus/notepad-plus-plus)
-[![Download](https://img.shields.io/badge/Download-npp.portable.zip-blue)](/downloads/npp.8.4.5.portable.x64.zip)
-
-<!-- AUTOINDEX:START — managed by update-intranet-indexes.sh; edits inside are overwritten -->
-## Files in this folder
-
-_No files in this folder yet._
-<!-- AUTOINDEX:END -->

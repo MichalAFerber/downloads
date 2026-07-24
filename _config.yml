@@ -1,0 +1,34 @@
+title: Downloads
+description: Installers, utilities, and vintage software archives — stable, direct download links.
+
+# Custom apex domain served by GitHub Pages (see CNAME). Because the site is
+# served at the domain root, baseurl is empty.
+url: https://tgwab.us
+baseurl: ""
+
+theme: jekyll-theme-cayman
+
+# Repo the Cayman "View on GitHub" button links to.
+repository: MichalAFerber/downloads
+
+# Do not show the theme's "Download .zip / .tar.gz" repo-tarball buttons.
+show_downloads: false
+
+plugins:
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Force-serve archive files whose names Jekyll would otherwise skip
+# (leading "#" is treated as a temp/backup marker).
+include:
+  - "#MIRCHEL.LOG"
+  - "#QUAKE.LOG"
+
+# Keep repo scaffolding out of the built site.
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - vendor
+  - README.md
+  - LICENSE
+  - .gitignore
