@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://tgwab.us/sitemap.xml
+Sitemap: https://michalaferber.github.io/downloads/sitemap.xml

@@ -1,10 +1,10 @@
 title: Downloads
 description: Installers, utilities, and vintage software archives — stable, direct download links.
 
-# Custom apex domain served by GitHub Pages (see CNAME). Because the site is
-# served at the domain root, baseurl is empty.
-url: https://tgwab.us
-baseurl: ""
+# Default GitHub Pages project-site URL. Because the site is served from a
+# subpath, baseurl carries the repo name.
+url: https://michalaferber.github.io
+baseurl: "/downloads"
 
 theme: jekyll-theme-cayman
 
