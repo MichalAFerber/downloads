@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://michalaferber.github.io/downloads/sitemap.xml
